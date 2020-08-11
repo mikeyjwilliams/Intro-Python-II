@@ -14,4 +14,7 @@ class Room:
     def __str__(self):
         return f'{self.name}, {self.description}'
 
+    def room_description(self):
+        return f'{self.description}'
+
 

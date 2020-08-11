@@ -44,7 +44,7 @@ player = Player(name, room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
-print(player)
+
 
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
@@ -54,4 +54,8 @@ print(player)
 #
 # If the user enters "q", quit the game.
 while True:
-    choice = input(f'Please choose ')
+    print(player.name, player.current_room)
+    choice = input(f'Please choose a direc')
+    print(choice)
+    if choice == 'q':
+        break

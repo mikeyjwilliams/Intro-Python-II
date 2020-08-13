@@ -53,14 +53,30 @@ room['treasure'].s_to = room['narrow']
 #
 # If the user enters "q", quit the game.
 
+def intro_message():
+    print('''****************************''')
+    print('''    Text Adventure Game     ''')
+    print('''****************************''')
+
+
+def user_controls():
+    directions = { 'n': 'North', 's': 'South', 'e': 'East', 'w': 'West' }
+    
+    print('Please select a direction to go in.')
+    for key, val in directions.items():
+        print(f' enter [{key}] key for {val} direction')
+    
+
+
+
 def direction_outside(choice):
     if choice == 'n':
         player.location = room['outside'].n_to
     else:
         print('sorry you can not go in that ')
+        
 
-
-
+intro_message()
 name = input('please enter your name ')
 player = Player(name, room['outside'])
 
@@ -72,13 +88,15 @@ while True:
     if choice == 'q':
         break
     
-    direction_outside(choice)
+    player = direction_outside(choice)
     
     print(player.location)
         
         
         
-        
+# room['foyer'].s_to
+# room['foyer'].n_to
+# room['foyer'].e_to    
     
     
         

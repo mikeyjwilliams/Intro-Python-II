@@ -54,27 +54,14 @@ def user_controls():
 
 
 def direction_layout(choice):
-    if choice == 'n':
-        if hasattr(player.current_room, 'n_to'):
-            player.current_room = getattr(player.current_room, 'n_to')
+    if choice == 's' or choice == 'n' or choice == 'e' or choice == 'w':
+        if getattr(player.current_room, f'{choice}_to') is not None:
+            player.current_room = getattr(player.current_room, f'{choice}_to')
             return player
-    elif choice == 's':
-        if hasattr(player.current_room, 's_to'):
-            player.current_room = getattr(player.current_room, 's_to')
+        else:
+            print('that direction is blocked, please choose another....')
             return player
-    elif choice == 'e':
-        if hasattr(player.current_room, 'e_to'):
-            player.current_room = getattr(player.current_room, 'e_to')
-            return player
-    elif choice == 'w':
-        if hasattr(player.current_room, 'w_to'):
-            player.current_room = getattr(player.current_room, 'w_to')
-            return player
-    else:
-        print('sorry that direction is not available at this time.')  
-        player.current_room = player.current_room
-        return player
-          
+    
 
 intro_message()
 name = input('please enter your name ')
@@ -115,11 +102,6 @@ while True:
 # If the user enters "q", quit the game.
 
 
-        
-        
-# room['foyer'].s_to
-# room['foyer'].n_to
-# room['foyer'].e_to    
     
     
         

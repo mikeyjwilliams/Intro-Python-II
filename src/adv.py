@@ -41,38 +41,57 @@ def intro_message():
 
 
 def user_controls():
-    directions = { 'n': 'North', 's': 'South', 'e': 'East', 'w': 'West' }
+    directions = { 'n': 'North', 's': 'South', 'e': 'East', 'w': 'West', 'q': 'quit' }
     
     print('Please select a direction to go in.')
     for key, val in directions.items():
-        print(f' enter [{key}] key for {val} direction')
+        if key != 'q':
+            print(f'enter [{key}] key for {val} direction')
+        else:
+            print(f'enter [{key}] key for {val} quit')
     
 
 
 
-def direction_outside(choice):
+def direction_layout(choice):
     if choice == 'n':
-        player.location = room['outside'].n_to
+        if hasattr(player.current_room, 'n_to'):
+            player.current_room = getattr(player.current_room, 'n_to')
+            return player
+    elif choice == 's':
+        if hasattr(player.current_room, 's_to'):
+            player.current_room = getattr(player.current_room, 's_to')
+            return player
+    elif choice == 'e':
+        if hasattr(player.current_room, 'e_to'):
+            player.current_room = getattr(player.current_room, 'e_to')
+            return player
+    elif choice == 'w':
+        if hasattr(player.current_room, 'w_to'):
+            player.current_room = getattr(player.current_room, 'w_to')
+            return player
     else:
-        print('sorry you can not go in that ')
-        
+        print('sorry that direction is not available at this time.')  
+        player.current_room = player.current_room
+        return player
+          
 
 intro_message()
 name = input('please enter your name ')
 player = Player(name, room['outside'])
 
-print(room['outside'].n_to)
+# print(room['outside'].n_to)
 while True:
-    print('N ', player.room_current())
-    print(player.name, player.current_room)
+    # print('N ', player.room_current())
+    print(player)
+    user_controls()
     choice = input('Please choose a direction....')
     print(choice)
     if choice == 'q':
         break
     
-    player = direction_outside(choice)
+    player = direction_layout(choice)
     
-    print(player.location)
     
 
 #

@@ -9,7 +9,8 @@ class Player:
         self.current_room = current_room
 
     def __str__(self):
-        return f'{self.name} is {self.current_room}'
+        return f'{self.current_room}'
+    
     
     def room_current(self):
         return f'{self.current_room}'

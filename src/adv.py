@@ -33,25 +33,6 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
-# Main
-#
-
-# Make a new player object that is currently in the 'outside' room.
-
-
-# Write a loop that:
-#
-# * Prints the current room name
-
-
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
 
 def intro_message():
     print('''****************************''')
@@ -82,8 +63,9 @@ player = Player(name, room['outside'])
 
 print(room['outside'].n_to)
 while True:
+    print('N ', player.room_current())
     print(player.name, player.current_room)
-    choice = input(f'Please choose a direction....')
+    choice = input('Please choose a direction....')
     print(choice)
     if choice == 'q':
         break
@@ -91,7 +73,29 @@ while True:
     player = direction_outside(choice)
     
     print(player.location)
-        
+    
+
+#
+# Main
+#
+
+# Make a new player object that is currently in the 'outside' room.
+
+
+# Write a loop that:
+#
+# * Prints the current room name
+
+
+# * Prints the current description (the textwrap module might be useful here).
+# * Waits for user input and decides what to do.
+#
+# If the user enters a cardinal direction, attempt to move to the room there.
+# Print an error message if the movement isn't allowed.
+#
+# If the user enters "q", quit the game.
+
+
         
         
 # room['foyer'].s_to

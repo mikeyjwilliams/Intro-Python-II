@@ -43,6 +43,19 @@ def intro_message():
     print('''    Text Adventure Game     ''')
     print('''****************************''')
 
+def goodbye_message():
+    clear()
+    print('Thank you for playing....')
+    print('see you next time')
+    print('goodbye')
+    print()
+    time.sleep(3)
+    print('\' Remember: reality is an illusion.\'')
+    time.sleep(2)
+    print('\n The universe is a hologram.\'')
+    time.sleep(1)
+    print('\n Buy gold. Bye!\'')
+        
 
 def user_controls():
     directions = { 'n': 'North', 's': 'South', 'e': 'East', 'w': 'West', 'q': 'quit' }
@@ -58,9 +71,8 @@ def user_controls():
 
 
 def direction_layout(choice):
-    directions = { 'n': 'North', 's': 'South', 'e': 'East', 'w': 'West', 'q': 'quit' }
+    directions = { 'n': 'North', 's': 'South', 'e': 'East', 'w': 'West' }
     if choice == 's' or choice == 'n' or choice == 'e' or choice == 'w':
-        
         if getattr(player.current_room, f'{choice}_to') is not None:
             print(f'{player.name} moved {directions[choice]}')
             player.current_room = getattr(player.current_room, f'{choice}_to')
@@ -68,6 +80,10 @@ def direction_layout(choice):
         else:
             print('that direction is blocked, please choose another....')
             return player
+    elif choice != 's' or choice != 'n' or choice != 'e' or choice != 'w':
+        print('please use one of the given controls, [n], [s], [e], or [w].')
+        return player
+        
         
         
 # define our clear function 
@@ -86,7 +102,7 @@ intro_message()
 name = input('please enter your name ')
 player = Player(name, room['outside'])
 
-# print(room['outside'].n_to)
+clear()
 while True:
     # print('N ', player.room_current())
    
@@ -94,20 +110,15 @@ while True:
     print()
     user_controls()
     print()
-    choice = input('Please choose a direction....')
-    print(choice)
-    if choice == 'q':
-        clear()
-        print('Thank you for playing....')
-        time.sleep(3)
-        print('see you next time')
-        time.sleep(2)
-        print('goodbye')
-        time.sleep(1)
-        print('\' Remember: reality is an illusion. The universe is a hologram. Buy gold. Bye!')
-        break
-     
+    choice = input('Please choose a direction....').lower()
     
+    if choice.lower() == 'q':
+        goodbye_message()
+        break
+    
+    # print(choice)
+    
+    clear()
     player = direction_layout(choice)
     
     

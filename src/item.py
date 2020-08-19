@@ -15,6 +15,3 @@ class Item:
 
     def item_description(self):
         return f'{self.description}'
-
-    def on_take(self):
-        print(f'You have picked up {self.name}')

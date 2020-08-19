@@ -4,6 +4,7 @@ from os import system, name
 import time
 from room import Room
 from player import Player
+from item import Item
 # Declare all the rooms
 
 room = {
@@ -25,6 +26,13 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+items = {
+    'knife': Item('knife', 'dull steak knife...great weapon... -_-'),
+    'light': Item('lantern', 'a completly fuled lantern. This might come in handy.'),
+    'rock': Item('rock', 'flint rock for starting fires.'),
+    'sheild': Item('woodenshield', 'a shield made of wood, this will work for now.')
+}
+
 
 # Link rooms together
 
@@ -43,6 +51,7 @@ def intro_message():
     print('''    Text Adventure Game     ''')
     print('''****************************''')
 
+
 def goodbye_message():
     clear()
     print('Thank you for playing....')
@@ -55,23 +64,22 @@ def goodbye_message():
     print('\n The universe is a hologram.\'')
     time.sleep(1)
     print('\n Buy gold. Bye!\'')
-        
+
 
 def user_controls():
-    directions = { 'n': 'North', 's': 'South', 'e': 'East', 'w': 'West', 'q': 'quit' }
-    
+    directions = {'n': 'North', 's': 'South',
+                  'e': 'East', 'w': 'West', 'q': 'quit'}
+
     print('Please select a direction to go in.')
     for key, val in directions.items():
         if key != 'q':
             print(f'enter [{key}] key for {val} direction')
         else:
             print(f'enter [{key}] key for {val} quit')
-    
-
 
 
 def direction_layout(choice):
-    directions = { 'n': 'North', 's': 'South', 'e': 'East', 'w': 'West' }
+    directions = {'n': 'North', 's': 'South', 'e': 'East', 'w': 'West'}
     if choice == 's' or choice == 'n' or choice == 'e' or choice == 'w':
         if getattr(player.current_room, f'{choice}_to') is not None:
             print(f'{player.name} moved {directions[choice]}')
@@ -83,20 +91,19 @@ def direction_layout(choice):
     elif choice != 's' or choice != 'n' or choice != 'e' or choice != 'w':
         print('please use one of the given controls, [n], [s], [e], or [w].')
         return player
-        
-        
-        
-# define our clear function 
-def clear(): 
-  
-    # for windows 
-    if name == 'nt': 
-        _ = system('cls') 
-  
-    # for mac and linux(here, os.name is 'posix') 
-    else: 
+
+
+# define our clear function
+def clear():
+
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+
+    # for mac and linux(here, os.name is 'posix')
+    else:
         _ = system('clear')
-    
+
 
 intro_message()
 name = input('please enter your name ')
@@ -105,23 +112,22 @@ player = Player(name, room['outside'])
 clear()
 while True:
     # print('N ', player.room_current())
-   
+
     print(player)
     print()
     user_controls()
     print()
     choice = input('Please choose a direction....').lower()
-    
+
     if choice.lower() == 'q':
         goodbye_message()
         break
-    
+
     # print(choice)
-    
+
     clear()
     player = direction_layout(choice)
-    
-    
+
 
 #
 # Main
@@ -142,9 +148,3 @@ while True:
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-
-
-    
-    
-        
-    

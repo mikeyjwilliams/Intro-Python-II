@@ -17,6 +17,4 @@ class Player:
 
     def on_take(self, item):
         print(f'{self.name} picked up {item}')
-        print(f'Now with great power comes great...')
-        print(f'I am kidding...this is a game.')
         self.pocket.append(item)

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-from os import system, name
+import os
+from os import system
 import time
 from room import Room
 from player import Player

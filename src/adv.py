@@ -45,6 +45,11 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+room['outside'] = items['outside']
+room['foyer'] = items['knife']
+room['narrow'] = items['light']
+room['treasure'] = items['shield']
+
 
 def intro_message():
     print('''****************************''')

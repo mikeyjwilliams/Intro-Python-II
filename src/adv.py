@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import sys
 from os import system
 import time
 from room import Room
@@ -8,6 +9,10 @@ from player import Player
 from item import Item
 # Declare all the rooms
 
+'''
+room dictionary
+uses Room class
+'''
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
@@ -27,7 +32,11 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-items = {
+'''
+item dictionary
+uses Item class
+'''
+item = {
     'knife': Item('knife', 'dull steak knife...great weapon... -_-'),
     'light': Item('lantern', 'a completly fuled lantern. This might come in handy.'),
     'rock': Item('rock', 'flint rock for starting fires.'),
@@ -35,8 +44,9 @@ items = {
 }
 
 
-# Link rooms together
-
+'''
+connects rooms together
+'''
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -46,15 +56,33 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-room['outside'] = items['outside']
-room['foyer'] = items['knife']
-room['narrow'] = items['light']
-room['treasure'] = items['shield']
+'''
+adds items to certain rooms
+'''
+# room['outside'] = item['outside']
+# room['foyer'] = item['knife']
+# room['narrow'] = item['light']
+# room['treasure'] = item['shield']
 
 
+'''
+intro message function
+prints out 
+'''
 def intro_message():
-    print('''****************************''')
-    print('''    Text Adventure Game     ''')
+    print('''***''' * 2)
+    time.sleep(3)
+    print('''As a bright flash goes off, you snap awake.''')
+    print('''***''' * 3)
+    time.sleep(3)
+    print('''Realizing everything coming back to you... suddenly you panic''')
+    print('''***''' * 4)
+    time.sleep(3)
+    print('''***''' * 5)
+    print('where are? whats your name? has time already collasped?')
+    time.sleep(3)
+    print('''****************************''') 
+    print('''*******Micro Recursion******''')
     print('''****************************''')
 
 
@@ -70,6 +98,7 @@ def goodbye_message():
     print('\n The universe is a hologram.\'')
     time.sleep(1)
     print('\n Buy gold. Bye!\'')
+    sys.exit(0)
 
 
 def user_controls():
@@ -111,13 +140,13 @@ def clear():
         _ = system('clear')
 
 
+
 intro_message()
 name = input('please enter your name ')
 player = Player(name, room['outside'])
 
 clear()
 while True:
-    # print('N ', player.room_current())
 
     print(player)
     print()
@@ -128,8 +157,6 @@ while True:
     if choice.lower() == 'q':
         goodbye_message()
         break
-
-    # print(choice)
 
     clear()
     player = direction_layout(choice)

@@ -12,11 +12,10 @@ room = {
 
     'alley':    Room("alley way", """Dim light filters in from the south. While fans scream from behind
     body guards, you stop and sign autographs and take pictures,....
-    east goes to the bus, west heads toa door leading into the venue, and you hear music playing to the south."""),
+    east goes to the bus, west heads to a door leading into the venue, and you hear music playing to the south."""),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+    'music': Room("music from floor", """As you walk out you see a stage where you see a band playing,
+                  either go n to the alley, or west to the bar for a refreshment."""),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air."""),

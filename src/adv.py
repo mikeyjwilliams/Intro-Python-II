@@ -8,11 +8,11 @@ from item import Item
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'tourbus':  Room("tour bus",'cramped inside the tour bus, your only way out is the (w) west out the front door.'),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+    'alley':    Room("alley way", """Dim light filters in from the south. While fans scream from behind
+    body guards, you stop and sign autographs and take pictures,....
+    east goes to the bus, west heads toa door leading into the venue, and you hear music playing to the south."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
